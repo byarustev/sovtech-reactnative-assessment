@@ -24,7 +24,7 @@ export default function CategoryJokeScreen({ route  }: CategoryJokeScreenProps) 
           setError(error);
         }
       )
-  }, [joke])
+  }, [])
 
   const maybeRenderCategoryJoke= ()=>{
     if(error){

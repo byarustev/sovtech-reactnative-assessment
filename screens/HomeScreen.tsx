@@ -23,7 +23,7 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<'TabOne'>)
           setError(error);
         }
       )
-  }, [categories])
+  }, [])
 
   const maybeRenderCategories= ()=>{
     if(error){
@@ -32,6 +32,10 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<'TabOne'>)
 
     if(!isLoaded){
       return <Text>Loading</Text>;
+    }
+
+    if(categories.length===0){
+      return <Text>Found 0 categories</Text>;
     }
 
     return <FlatList
