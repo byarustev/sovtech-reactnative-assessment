@@ -17,6 +17,7 @@ export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   Modal: undefined;
   NotFound: undefined;
+  CategoryJoke: { category: string };
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
@@ -28,6 +29,8 @@ export type RootTabParamList = {
   TabOne: undefined;
   TabTwo: undefined;
 };
+
+export type CategoryJokeScreenProps = NativeStackScreenProps<RootStackParamList, 'CategoryJoke'>;
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
   BottomTabScreenProps<RootTabParamList, Screen>,
