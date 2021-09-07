@@ -39,10 +39,10 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<'TabOne'>)
     }
 
     return <FlatList
-            data={categories}
-            renderItem={({item}) => <Text onPress={() =>{
+            data={categories.slice(0, 20)} // pick out only a few items, in future the results could be paginated
+            renderItem={({item}) => <View style={styles.itemView}><Text onPress={() =>{
               navigation.navigate('CategoryJoke',{ category: item});
-            }} style={styles.item}>{item}</Text>
+            }} style={styles.item}>{item}</Text></View>
           }
             keyExtractor={(item, index) => index.toString()}
           />
@@ -58,8 +58,7 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<'TabOne'>)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 10,
   },
   title: {
     fontSize: 20,
@@ -70,4 +69,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
     height: 44,
   },
+  itemView:{
+    borderBottomWidth: 0.3,
+    borderBottomColor: '#D3D3D3',
+  }
 });

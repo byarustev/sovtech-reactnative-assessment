@@ -13,7 +13,6 @@ export default function SearchScreen() {
   const search=()=>{
     if(searchText!==""){
       const url = SEARCH_URL+searchText;
-      console.log(url, 'url')
       setIsLoaded(false);
       fetch(url)
       .then(res => res.json())
@@ -45,19 +44,17 @@ export default function SearchScreen() {
       return <Text>Found 0 results</Text>;
     }
 
-    console.log(searchResults, 'here')
-
-    // icon_url, id, value
     return <FlatList
-            data={searchResults}
-            renderItem={({item}) => <Text style={styles.item}>{item.value}</Text>
+            data={searchResults.slice(0,20)} // pick out only a few items, in future the results could be paginated
+            renderItem={({item}) => <View style={styles.itemView}><Text style={styles.item}>{item.value}</Text></View>
             }
             keyExtractor={(item) => item.id}
           />
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView>
+      <View style={styles.searchContainer}>
       <TextInput
         style={styles.input}
         onChangeText={onChangeSearchText}
@@ -68,14 +65,23 @@ export default function SearchScreen() {
         title="Search"
         onPress={() => search()}
       />
+      </View>
+      <View style={styles.searchResultContainer}>
       {mayBeRenderSearchResults()}
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  searchContainer: {
+    height: '32em',
+    flexDirection:'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  searchResultContainer: {
+    flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -83,14 +89,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
   input:{
     height: 40,
-    width: '80%',
+    width: '70%',
     margin: 12,
     borderWidth: 1,
     padding: 10,
@@ -98,6 +99,10 @@ const styles = StyleSheet.create({
   item:{
     padding: 10,
     fontSize: 18,
-    height: 44,
+    justifyContent: 'space-evenly',
+  },
+  itemView:{
+    borderBottomWidth: 0.3,
+    borderBottomColor: '#D3D3D3',
   }
 });

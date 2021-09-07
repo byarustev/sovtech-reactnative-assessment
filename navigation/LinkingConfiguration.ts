@@ -23,7 +23,7 @@ const linking: LinkingOptions<RootStackParamList> = {
       },
       Modal: 'modal',
       NotFound: '*',
-      CategoryJoke: 'categoryJoke',
+      CategoryJoke: 'Joke',
     },
   },
 };
