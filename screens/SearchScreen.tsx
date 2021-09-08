@@ -59,6 +59,7 @@ export default function SearchScreen() {
         onChangeText={onChangeSearchText}
         value={searchText}
         placeholder="Enter Search Text"
+        testID="search-input"
       />
       <Button
         title="Search"

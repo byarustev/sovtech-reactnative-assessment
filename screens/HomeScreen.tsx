@@ -44,7 +44,7 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<'TabOne'>)
             data={categories.slice(0, 20)} // pick out only a few items, in future the results could be paginated
             renderItem={({item}) => <View style={styles.itemView}><Text onPress={() =>{
               navigation.navigate('CategoryJoke',{ category: item});
-            }} style={styles.item}>{item}</Text></View>
+            }} style={styles.item} testID={`test-${item}`} >{item}</Text></View>
             }
             keyExtractor={(item, index) => index.toString()}
           />
