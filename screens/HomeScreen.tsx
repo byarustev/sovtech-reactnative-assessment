@@ -1,7 +1,6 @@
 import React, {useContext, useState, useEffect}  from 'react';
 import axios from 'axios';
-import { FlatList, StyleSheet } from 'react-native';
-import { Text, View } from '../components/Themed';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { RootTabScreenProps } from '../types';
 import {CategoriesContext} from '../context/CategoriesContext';
 import {CATEGORIES_URL} from '../constants/Urls';
