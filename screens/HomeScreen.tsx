@@ -1,4 +1,5 @@
 import React, {useContext, useState, useEffect}  from 'react';
+import axios from 'axios';
 import { FlatList, StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
@@ -11,18 +12,20 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<'TabOne'>)
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    fetch(CATEGORIES_URL)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setCategories(result);
-        },
-        (error) => {
+    const fetchData= async () => {
+      await axios.get(CATEGORIES_URL)
+      .then(response => {
+        setIsLoaded(true);
+        setCategories(response.data);
+      })
+      .catch((error) => {
           setIsLoaded(true);
           setError(error);
         }
       )
+    } 
+
+    fetchData();
   }, [])
 
   const maybeRenderCategories= ()=>{
@@ -43,7 +46,7 @@ export default function HomeScreen({ navigation }: RootTabScreenProps<'TabOne'>)
             renderItem={({item}) => <View style={styles.itemView}><Text onPress={() =>{
               navigation.navigate('CategoryJoke',{ category: item});
             }} style={styles.item}>{item}</Text></View>
-          }
+            }
             keyExtractor={(item, index) => index.toString()}
           />
   }

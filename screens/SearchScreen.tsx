@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import axios from 'axios';
 import { Text, View } from '../components/Themed';
 import { FlatList, SafeAreaView, StyleSheet, TextInput, Button } from 'react-native';
 import { SEARCH_URL } from '../constants/Urls';
@@ -10,25 +11,23 @@ export default function SearchScreen() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const search=()=>{
+  const search=async ()=>{
     if(searchText!==""){
       const url = SEARCH_URL+searchText;
       setIsLoaded(false);
-      fetch(url)
-      .then(res => res.json())
-      .then(
-        (obj) => {
+
+      await axios.get(url)
+        .then(response => {
           setIsLoaded(true);
-          setSearchResults(obj.result);
-          setTotal(obj.total);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
-    }
-    
+          setSearchResults(response.data.result);
+          setTotal(response.data.total);
+        })
+        .catch((error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        )
+      }
   }
 
   const mayBeRenderSearchResults=()=>{
