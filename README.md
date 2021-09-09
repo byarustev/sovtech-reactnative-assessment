@@ -12,10 +12,10 @@ Done for assessment purposes
 
 # screenshoots
 ## Home Screen
-![Home](/screenshots/home.png)
+![Home](/screenshots/home2.png)
 
 ## Joke/ Details Screen
 ![Joke](/screenshots/details.png)
 
 ## Search Screen
-![Search](/screenshots/search2.png)
+![Search](/screenshots/search3.png)

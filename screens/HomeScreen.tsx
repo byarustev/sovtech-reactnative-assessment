@@ -68,8 +68,9 @@ const styles = StyleSheet.create({
   },
   item: {
     padding: 10,
-    fontSize: 18,
+    fontSize: 16,
     height: 44,
+    textTransform: 'capitalize',
   },
   itemView:{
     borderBottomWidth: 0.3,
